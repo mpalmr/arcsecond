@@ -1,11 +1,13 @@
-// pub fn get_listing() -> impl Future<Item = Activity, Error = reqwest::Error> {
-//     client
-//         .get(&format!("{}/activities", base_url))
-//         .send()
-//         .and_then(|response| response.into_body().concat2())
-// }
+use crate::client::Client;
+use reqwest::Error;
+use serde::Deserialize;
+
+pub fn get_listing(client: &Client) -> Result<Activity, Error> {
+    Ok(client.request("/activities")?.json()?)
+}
 
 /// Activities ordered by inverse creation date.
+#[derive(Deserialize)]
 pub struct Activity {
     pub id: u32,
     pub title: String,
@@ -24,6 +26,7 @@ pub struct Activity {
     pub programme: Programme,
 }
 
+#[derive(Deserialize)]
 pub struct Coordinates {
     pub system: String, // enum
     pub right_ascension: f64,
@@ -33,6 +36,7 @@ pub struct Coordinates {
     pub epoch: u128,
 }
 
+#[derive(Deserialize)]
 pub struct Programme {
     pub id: u32,
     pub programme_id: String,
