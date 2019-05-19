@@ -7,7 +7,7 @@ pub fn get_listing(client: &Client) -> Result<Activity, Error> {
 }
 
 /// Activities ordered by inverse creation date.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Activity {
     pub id: u32,
     pub title: String,
@@ -26,7 +26,7 @@ pub struct Activity {
     pub programme: Programme,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Coordinates {
     pub system: String, // enum
     pub right_ascension: f64,
@@ -36,7 +36,7 @@ pub struct Coordinates {
     pub epoch: u128,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Programme {
     pub id: u32,
     pub programme_id: String,
