@@ -1,0 +1,15 @@
+[package]
+name = "arcsecond"
+version = "0.0.1"
+publish = false
+license = "MIT"
+authors = ["Matthew Palmer <mspalmer91@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "arcsecond"
+
+[dependencies]
+reqwest = "0.9.17"
+serde = "1.0.91"
+futures = "0.1.27"
