@@ -10,4 +10,22 @@
 /// observer, or collaboration or organisation.
 pub mod endpoint;
 
-mod http;
+/// HTTP client for making API requests.
+pub struct Client {
+    client: reqwest::Client,
+}
+
+impl Client {
+    /// Creates a new instance of the HTTP client.
+    pub fn new() -> Self {
+        Self {
+            client: reqwest::Client::new(),
+        }
+    }
+}
+
+impl Default for Client {
+    fn default() -> Self {
+        Self::new()
+    }
+}

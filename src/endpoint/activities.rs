@@ -1,12 +1,9 @@
-use crate::http::{client, base_url};
-use futures::Future;
-
-pub fn get_listing() -> impl Future<Item = Activity, Error = reqwest::Error> {
-    client
-        .get(&format!("{}/activities", base_url))
-        .send()
-        .and_then(|response| response.into_body().concat2())
-}
+// pub fn get_listing() -> impl Future<Item = Activity, Error = reqwest::Error> {
+//     client
+//         .get(&format!("{}/activities", base_url))
+//         .send()
+//         .and_then(|response| response.into_body().concat2())
+// }
 
 /// Activities ordered by inverse creation date.
 pub struct Activity {

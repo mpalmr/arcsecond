@@ -10,6 +10,6 @@ edition = "2018"
 name = "arcsecond"
 
 [dependencies]
-reqwest = "0.9.17"
 serde = "1.0.91"
 futures = "0.1.27"
+reqwest = "0.9.17"
