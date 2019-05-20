@@ -3,6 +3,7 @@ use reqwest::Error;
 use serde::Deserialize;
 
 pub fn get_listing(client: &Client) -> Result<Vec<Activity>, Error> {
+    println!("{}", client.request("/activities/")?.text()?);
     Ok(client.request("/activities/")?.json()?)
 }
 

@@ -14,10 +14,7 @@ impl Client {
         let mut headers = HeaderMap::new();
         headers.insert(USER_AGENT, HeaderValue::from_static(user_agent));
         headers.insert(ACCEPT, HeaderValue::from_static("application/json"));
-        headers.insert(
-            ACCEPT_ENCODING,
-            HeaderValue::from_static("gzip, deflate, br"),
-        );
+        headers.insert(ACCEPT_ENCODING, HeaderValue::from_static("gzip"));
         headers.insert(ACCEPT_LANGUAGE, HeaderValue::from_static("en-US,en;q=0.9"));
         headers.insert(CACHE_CONTROL, HeaderValue::from_static("no-cache"));
         headers.insert(DNT, HeaderValue::from_static("1"));
@@ -31,7 +28,6 @@ impl Client {
     }
 
     pub fn request(&self, path: &str) -> Result<Response, Error> {
-        println!("https://api.arcsecond.io{}", path);
         Ok(self
             .client
             .get(&format!("https://api.arcsecond.io{}", path))
