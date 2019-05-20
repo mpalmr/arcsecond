@@ -28,3 +28,11 @@ fn get_catalogue_listing() {
         _ => assert!(false, "did not get response"),
     };
 }
+
+#[test]
+fn get_exoplanets() {
+    match Client::default().get_exoplanets() {
+        Ok(_) => assert!(true),
+        _ => assert!(false, "did not get response"),
+    }
+}

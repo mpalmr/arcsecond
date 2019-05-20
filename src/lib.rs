@@ -13,7 +13,7 @@ use reqwest::header::{
 use reqwest::{Error, Response};
 
 use response::activity::Activity;
-use response::Catalogue;
+use response::{Catalogue, Exoplanet};
 
 pub struct Client {
     client: reqwest::Client,
@@ -48,6 +48,10 @@ impl Client {
 
     pub fn get_catalogue_listing(&self) -> Result<Vec<Catalogue>, Error> {
         Ok(self.request("/catalogues/")?.json()?)
+    }
+
+    pub fn get_exoplanets(&self) -> Result<Vec<Exoplanet>, Error> {
+        Ok(self.request("/exoplanets/")?.json()?)
     }
 
     fn request(&self, path: &str) -> Result<Response, Error> {
