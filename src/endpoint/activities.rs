@@ -3,7 +3,7 @@ use reqwest::Error;
 use serde::Deserialize;
 
 pub fn get_listing(client: &Client) -> Result<Vec<Activity>, Error> {
-    Ok(client.request("/activities")?.json()?)
+    Ok(client.request("/activities/")?.json()?)
 }
 
 pub fn get_listing_by_id(client: &Client, id: u32) -> Result<Activity, Error> {
@@ -11,7 +11,7 @@ pub fn get_listing_by_id(client: &Client, id: u32) -> Result<Activity, Error> {
 }
 
 /// Activities ordered by inverse creation date.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Activity {
     pub id: u32,
     pub title: String,
@@ -30,7 +30,7 @@ pub struct Activity {
     pub programme: Programme,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum CoordinatesSystem {
     ICRS,
     FK5,
@@ -40,7 +40,7 @@ pub enum CoordinatesSystem {
     AltAz,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Coordinates {
     pub system: CoordinatesSystem,
     pub right_ascension: f64,
@@ -50,7 +50,7 @@ pub struct Coordinates {
     pub epoch: u128,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Programme {
     pub id: u32,
     pub programme_id: String,

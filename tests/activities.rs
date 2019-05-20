@@ -3,6 +3,7 @@ use arcsecond::endpoint::activities;
 
 #[test]
 fn test_get_listing() {
-    println!("{:?}", activities::get_listing(&Client::new()));
-    assert!(true);
+    let activity_listing = activities::get_listing(&Client::default());
+    println!("{:?}", activity_listing);
+    assert!(false);
 }
