@@ -3,11 +3,10 @@ use reqwest::Error;
 use serde::Deserialize;
 
 pub fn get_listing(client: &Client) -> Result<Vec<Activity>, Error> {
-    println!("{}", client.request("/activities/")?.text()?);
     Ok(client.request("/activities/")?.json()?)
 }
 
-pub fn get_listing_by_id(client: &Client, id: u32) -> Result<Activity, Error> {
+pub fn get_by_id(client: &Client, id: u32) -> Result<Activity, Error> {
     Ok(client.request(&format!("/activities/{}", id))?.json()?)
 }
 
@@ -19,15 +18,15 @@ pub struct Activity {
     pub content: String,
     pub date: String,
     pub links: Vec<String>,
-    pub observing_site: String,
-    pub telescope: String,
+    pub observing_site: Option<String>,
+    pub telescope: Option<String>,
     pub instrument: String,
     pub target_name: String,
     pub profile: String,
     pub collaboration: Option<String>,
     pub organisation: Option<String>,
     pub creation_date: String,
-    pub coordinates: Coordinates,
+    pub coordinates: Option<Coordinates>,
     pub programme: Programme,
 }
 
@@ -48,7 +47,7 @@ pub struct Coordinates {
     pub right_ascension_units: String,
     pub declination: f64,
     pub declination_units: String,
-    pub epoch: u128,
+    pub epoch: f64,
 }
 
 #[derive(Deserialize, Debug)]
