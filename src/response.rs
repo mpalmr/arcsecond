@@ -1,5 +1,16 @@
 use serde::Deserialize;
 
+#[derive(Deserialize, Debug)]
+pub struct Catalogue {
+    pub name: String,
+    pub secondary_name: String,
+    pub pk: u32,
+    pub url: String,
+    pub source_url: String,
+    pub description: String,
+    pub rows: String,
+}
+
 pub mod activity {
     use super::Deserialize;
 

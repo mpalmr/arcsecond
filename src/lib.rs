@@ -11,7 +11,9 @@ use reqwest::header::{
     PRAGMA, USER_AGENT,
 };
 use reqwest::{Error, Response};
+
 use response::activity::Activity;
+use response::Catalogue;
 
 pub struct Client {
     client: reqwest::Client,
@@ -42,6 +44,10 @@ impl Client {
 
     pub fn get_activity_by_id(&self, id: u32) -> Result<Activity, Error> {
         Ok(self.request(&format!("/activities/{}", id))?.json()?)
+    }
+
+    pub fn get_catalogue_listing(&self) -> Result<Vec<Catalogue>, Error> {
+        Ok(self.request("/catalogues/")?.json()?)
     }
 
     fn request(&self, path: &str) -> Result<Response, Error> {
